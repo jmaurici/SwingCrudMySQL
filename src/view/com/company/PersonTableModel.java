@@ -113,18 +113,18 @@ public class PersonTableModel extends AbstractTableModel {
 
     public void addPerson(Persona person) {
         personas.add(person);
-        botones[0].setEnabled(true);  // se desactiva el botón "Nuevo"
+       /* botones[0].setEnabled(true);  // se desactiva el botón "Nuevo"
         botones[1].setEnabled(false);
         botones[2].setEnabled(false);  // se activa el botón "Guardar"
-        fireTableRowsInserted(personas.size() - 1, personas.size() - 1);
+       */ fireTableRowsInserted(personas.size() - 1, personas.size() - 1);
     }
 
     public void removePerson(int rowIndex) {
         personas.remove(rowIndex);
-        botones[0].setEnabled(true);  // se activa el botón "Nuevo"
+        /*botones[0].setEnabled(true);  // se activa el botón "Nuevo"
         botones[1].setEnabled(false);
         botones[2].setEnabled(false);
-        fireTableRowsDeleted(rowIndex, rowIndex);
+      */  fireTableRowsDeleted(rowIndex, rowIndex);
     }
     public Persona getPersonAt(int rowIndex) {
         return personas.get(rowIndex);

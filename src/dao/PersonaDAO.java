@@ -35,7 +35,6 @@ public class PersonaDAO {
         }
         return personas;
     }
-
     public boolean updatePersona(Persona persona) throws SQLException {
         String query = "UPDATE Persona SET nif=?, nombre=? , apellido1 =?," +
                 " apellido2=?, ciudad= ?, direccion=?, telefono=?, fecha_nacimiento=?," +
@@ -102,13 +101,12 @@ public class PersonaDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, personId);
                 preparedStatement.executeUpdate();
-                System.out.println("Borrado de la tabla");
+                System.out.println("Borrado de la tabla personas");
                 return true;
             } else {
                 System.out.println("Vale, no lo borro...");
                 return false;
             }
-
         } catch (SQLException ex) {
             return false;
         }

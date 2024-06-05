@@ -41,7 +41,7 @@ public class ViewPanelEntrada extends JFrame {
 
             @Override
             public void windowClosing(WindowEvent e) {
-                System.out.println("ha salido del programa");
+                System.out.println("Cerrando BBDD...");
                 DBConnection.closeConn();
             }
 

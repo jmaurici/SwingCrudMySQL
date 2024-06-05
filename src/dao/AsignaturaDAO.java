@@ -1,13 +1,14 @@
 package dao;
 
 import model.com.company.Asignatura;
+
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AsignaturaDAO {
-    public List<Asignatura> getAllAsignaturas() throws SQLException {
+    public List<Asignatura> getAllAsignaturas() {
         List<Asignatura> asignaturas = new ArrayList<>();
         String query = "SELECT * FROM asignatura";
         try {
@@ -84,16 +85,26 @@ public class AsignaturaDAO {
         return true;
     }
 
-    public void deleteAsignatura(int asignaturaId) {
+    public boolean deleteAsignatura(int asignaturaId) {
         String query = "DELETE FROM asignatura WHERE id=?";
         try {
-            Connection connection = DBConnection.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, asignaturaId);
-            preparedStatement.executeUpdate();
+            int confirmarBorrado = JOptionPane.YES_NO_OPTION;
+            confirmarBorrado = JOptionPane.showConfirmDialog(null, "Está seguro de borrar a id = " + asignaturaId);
+            if (confirmarBorrado == JOptionPane.OK_OPTION) {
+                Connection connection = DBConnection.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, asignaturaId);
+                preparedStatement.executeUpdate();
+                System.out.println("Borrado de la tabla asignaturas");
+                return true;
+            } else {
+                System.out.println("Vale, no lo borro...");
+                return false;
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error DELETE -> ", ex.getMessage(), JOptionPane.ERROR_MESSAGE);
-
+            return false;
         }
     }
+
 }

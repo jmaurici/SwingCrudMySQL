@@ -4,7 +4,6 @@ import dao.PersonaDAO;
 import model.com.company.Persona;
 import view.com.company.PersonTableModel;
 import view.com.company.ViewPanelEntrada;
-
 import javax.swing.*;
 import javax.swing.table.TableColumn;
 import java.awt.event.ActionEvent;
@@ -60,18 +59,17 @@ public class PersonasController implements ActionListener {
             }
         });
         formEntrada.getAddButton().setEnabled(true); // al inicio lo habilitamos..
-        // asignamos vida a los botones operacionales..
+        formEntrada.getDeleteButton().setEnabled(false);
+        // "damos vida" a los 3 botones operacionales..
         formEntrada.getAddButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Persona person = new Persona(0, "NIF", "Pepito", "APELLIDO1", "APELLIDO2",
                         "CIUDAD", "DIRECCION", "TELEFONO", "1985-5-18", "H", "alumno");
-
-
                 if (personaDAO.insertPersona(person)) {
                     tableModel.addPerson(person);
                     tabla.setRowSelectionInterval(tableModel.getRowCount() - 1, tableModel.getRowCount() - 1);
-                    // Optionally, scroll the table to make the selected row visible
+                    // detección de que se ha pulsado sobre la tabla
                     tabla.scrollRectToVisible(tabla.getCellRect(tableModel.getRowCount() - 1, 0, true));
                     formEntrada.getDeleteButton().setEnabled(true);
                 }
@@ -97,7 +95,6 @@ public class PersonasController implements ActionListener {
                     botones[2].setEnabled(false);
                     try {
                         personaDAO.updatePersona(person);
-
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Error UPDATE", "Error", JOptionPane.ERROR_MESSAGE);
                     }

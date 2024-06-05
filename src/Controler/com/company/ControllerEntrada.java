@@ -23,6 +23,5 @@ public class ControllerEntrada  {
         // botones tablas
         frEntrada.getAsignaturasButton().addActionListener(new AsignaturasController(frEntrada));
         frEntrada.getPersonasButton().addActionListener(new PersonasController(frEntrada));
-
     }
 }

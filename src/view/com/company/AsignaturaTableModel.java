@@ -1,15 +1,21 @@
 package view.com.company;
+
 import model.com.company.Asignatura;
+
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
-   public class AsignaturaTableModel extends AbstractTableModel {
+
+public class AsignaturaTableModel extends AbstractTableModel {
 
     private final String[] columnNames = {"ID", "NOMBRE", "CREDITOS", "TIPO", "CURSO",
-             "CUATRIMESTRE", "ID PROFESOR", "ID GRADO"};
+            "CUATRIMESTRE", "ID PROFESOR", "ID GRADO"};
     private List<Asignatura> asignaturas;
+    private JButton[] botones;
 
-    public AsignaturaTableModel(List<Asignatura> asignaturas) {
+    public AsignaturaTableModel(List<Asignatura> asignaturas, JButton[] botonera) {
         this.asignaturas = asignaturas;
+        this.botones = botonera;
     }
 
     @Override
@@ -85,6 +91,9 @@ import java.util.List;
                 asignatura.setIdGrado(Integer.parseInt((String) aValue));
                 break;
         }
+        botones[0].setEnabled(false);
+        botones[1].setEnabled(true);
+        botones[2].setEnabled(true);
         fireTableCellUpdated(rowIndex, columnIndex);
     }
 
@@ -95,8 +104,6 @@ import java.util.List;
 
     public void removeAsignatura(int rowIndex) {
         asignaturas.remove(rowIndex);
-      //  AsignaturaManager.getDeleteButton().setEnabled(false);
-        //AsignaturaManager.getSaveButton().setEnabled(false);
         fireTableRowsDeleted(rowIndex, rowIndex);
     }
 
@@ -105,7 +112,7 @@ import java.util.List;
     }
 
     public void fireTableCellUpdated(int row, int column) {
-       //AsignaturaManager.getSaveButton().setEnabled(true);
+
     }
 
 }
