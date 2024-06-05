@@ -1,14 +1,7 @@
 package Controler.com.company;
 
-import dao.AsignaturaDAO;
-import dao.PersonaDAO;
-import model.com.company.Asignatura;
-import model.com.company.Persona;
 import view.com.company.*;
-
 import javax.swing.*;
-import java.awt.event.*;
-
 
 public class ControllerEntrada  {
     private final ViewPanelEntrada frEntrada = new ViewPanelEntrada();
