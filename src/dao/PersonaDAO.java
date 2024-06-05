@@ -1,6 +1,7 @@
 package dao;
 
 import model.com.company.Persona;
+
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
@@ -86,7 +87,7 @@ public class PersonaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error INSERT -> ", e.getMessage(), JOptionPane.ERROR_MESSAGE);
-              return false;
+            return false;
         }
         return true;
     }
@@ -95,20 +96,21 @@ public class PersonaDAO {
         String query = "DELETE FROM Persona WHERE id=?";
         try {
             int confirmarBorrado = JOptionPane.YES_NO_OPTION;
-           confirmarBorrado= JOptionPane.showConfirmDialog (null, "Está seguro de borrar a id = "+ personId);
-            if(confirmarBorrado == JOptionPane.OK_OPTION) {
+            confirmarBorrado = JOptionPane.showConfirmDialog(null, "Está seguro de borrar a id = " + personId);
+            if (confirmarBorrado == JOptionPane.OK_OPTION) {
                 Connection connection = DBConnection.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, personId);
                 preparedStatement.executeUpdate();
                 System.out.println("Borrado de la tabla");
                 return true;
+            } else {
+                System.out.println("Vale, no lo borro...");
+                return false;
             }
-                else System.out.println("Vale, no lo borro...");
 
         } catch (SQLException ex) {
             return false;
         }
-        return false;
     }
 }
